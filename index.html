@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jay Gandhi — Senior QA Lead & Automation Architect</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#07090f;
+  --bg2:#0c1018;
+  --bg3:#111622;
+  --card:#141b28;
+  --cyan:#00d4ff;
+  --cyan-dim:rgba(0,212,255,0.15);
+  --green:#0dff8c;
+  --orange:#ff6b2b;
+  --white:#eef2f7;
+  --gray:#6b7c93;
+  --gray2:#4a5568;
+  --border:rgba(0,212,255,0.1);
+  --border2:rgba(255,255,255,0.06);
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;cursor:none;}
+
+/* CURSOR */
+#cur{width:10px;height:10px;background:var(--cyan);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transition:transform 0.12s,background 0.2s;mix-blend-mode:exclusion;}
+#cur-r{width:32px;height:32px;border:1px solid rgba(0,212,255,0.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:all 0.06s linear;}
+body:hover #cur{opacity:1;}
+
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:500;padding:0 64px;height:70px;display:flex;align-items:center;justify-content:space-between;background:rgba(7,9,15,0.9);backdrop-filter:blur(24px);border-bottom:1px solid var(--border2);}
+
+/* SVG LOGO */
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo svg{width:44px;height:44px;}
+.nav-logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;letter-spacing:0.5px;color:var(--white);}
+.nav-logo-sub{font-size:9px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);display:block;margin-top:-2px;}
+
+.nav-links{list-style:none;display:flex;gap:36px;}
+.nav-links a{color:var(--gray);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;transition:color 0.2s;position:relative;padding-bottom:4px;}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--cyan);transition:width 0.3s;}
+.nav-links a:hover{color:var(--cyan);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{background:var(--cyan);color:var(--bg);padding:9px 24px;border-radius:3px;font-family:'Syne',sans-serif;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:all 0.25s;border:1px solid var(--cyan);}
+.nav-cta:hover{background:transparent;color:var(--cyan);}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 460px;align-items:center;padding:100px 64px 60px 80px;gap:60px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at -5% 60%,rgba(0,212,255,0.05) 0%,transparent 55%),radial-gradient(ellipse 50% 50% at 105% 20%,rgba(13,255,140,0.04) 0%,transparent 55%);}
+.grid-overlay{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.025) 1px,transparent 1px);background-size:64px 64px;}
+.noise{position:absolute;inset:0;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.hero-left{position:relative;z-index:2;}
+.hero-badge{display:inline-flex;align-items:center;gap:9px;background:rgba(13,255,140,0.07);border:1px solid rgba(13,255,140,0.2);padding:6px 16px;border-radius:2px;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--green);margin-bottom:30px;}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{box-shadow:0 0 0 0 rgba(13,255,140,0.5);}50%{box-shadow:0 0 0 7px rgba(13,255,140,0);}}
+.hero-hey{font-family:'DM Mono',monospace;font-size:13px;color:var(--cyan);letter-spacing:2px;margin-bottom:14px;}
+.hero-hey span{color:var(--gray);}
+h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(58px,5.5vw,88px);line-height:0.95;letter-spacing:-2.5px;margin-bottom:22px;}
+h1 .line1{display:block;color:var(--white);}
+h1 .line2{display:block;background:linear-gradient(95deg,var(--cyan) 0%,var(--green) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{font-size:14px;color:var(--gray);letter-spacing:0.5px;margin-bottom:24px;padding-left:14px;border-left:2px solid var(--cyan);line-height:1.6;}
+.hero-p{font-size:15px;line-height:1.9;color:rgba(238,242,247,0.62);max-width:520px;margin-bottom:40px;}
+.hero-p strong{color:var(--cyan);font-weight:600;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+.btn-main{background:linear-gradient(90deg,var(--cyan),var(--green));color:var(--bg);padding:14px 34px;font-family:'Syne',sans-serif;font-weight:800;font-size:13px;letter-spacing:1px;text-decoration:none;border-radius:3px;transition:all 0.3s;box-shadow:0 0 24px rgba(0,212,255,0.25);}
+.btn-main:hover{box-shadow:0 0 44px rgba(0,212,255,0.5);transform:translateY(-2px);}
+.btn-sec{background:transparent;color:var(--white);padding:14px 34px;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;letter-spacing:1px;text-decoration:none;border-radius:3px;border:1px solid var(--border2);transition:all 0.3s;}
+.btn-sec:hover{border-color:rgba(0,212,255,0.4);color:var(--cyan);}
+
+/* HERO PHOTO */
+.hero-right{position:relative;z-index:2;display:flex;justify-content:center;}
+.photo-wrap{position:relative;width:380px;}
+.photo-halo{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(0,212,255,0.12) 0%,transparent 70%);filter:blur(28px);pointer-events:none;}
+.photo-frame{position:relative;border-radius:6px;overflow:hidden;border:1px solid rgba(0,212,255,0.18);}
+.photo-frame::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),var(--green),transparent);z-index:3;}
+.photo-frame::after{content:'';position:absolute;bottom:0;left:0;right:0;height:45%;background:linear-gradient(to top,rgba(7,9,15,0.85) 0%,transparent 100%);z-index:2;}
+.photo-frame img{width:100%;display:block;filter:saturate(0.88) contrast(1.08);}
+
+/* removed photo overlay tag — company name removed */
+.photo-yr{position:absolute;top:-18px;right:-18px;width:76px;height:76px;background:linear-gradient(135deg,var(--cyan),var(--green));border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Syne',sans-serif;box-shadow:0 0 28px rgba(0,212,255,0.35);z-index:4;}
+.photo-yr .n{font-size:26px;font-weight:800;color:var(--bg);line-height:1;}
+.photo-yr .l{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--bg);}
+
+/* STATS */
+.stats-bar{background:var(--bg2);display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.st{padding:30px 40px;text-align:center;border-right:1px solid var(--border2);position:relative;overflow:hidden;transition:background 0.3s;}
+.st:hover{background:rgba(0,212,255,0.04);}
+.st:last-child{border-right:none;}
+.st-n{font-family:'Syne',sans-serif;font-weight:800;font-size:46px;line-height:1;background:linear-gradient(130deg,var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.st-l{font-size:10px;color:var(--gray);margin-top:7px;letter-spacing:2.5px;text-transform:uppercase;}
+
+/* SECTIONS */
+section{padding:96px 80px;}
+.s-eye{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.s-eye::before{content:'';width:28px;height:1px;background:var(--cyan);}
+h2.s-ttl{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(34px,3.8vw,54px);line-height:1.05;letter-spacing:-1px;margin-bottom:52px;}
+h2.s-ttl em{font-style:normal;background:linear-gradient(90deg,var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+/* SKILLS */
+#skills{background:var(--bg);}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:2px;}
+.sk{background:var(--card);padding:28px 30px;position:relative;overflow:hidden;transition:all 0.3s;border:1px solid transparent;}
+.sk::before{content:'';position:absolute;top:0;left:0;width:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--green));transition:width 0.5s;}
+.sk:hover{border-color:var(--border);background:var(--bg3);}
+.sk:hover::before{width:100%;}
+.sk-cat{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);margin-bottom:8px;}
+.sk-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--white);margin-bottom:8px;}
+.sk-desc{font-size:12.5px;color:var(--gray);line-height:1.75;}
+.sk-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+.chip{font-size:10px;font-weight:600;letter-spacing:0.5px;background:rgba(0,212,255,0.07);border:1px solid rgba(0,212,255,0.15);color:var(--cyan);padding:3px 10px;border-radius:2px;}
+
+/* EXPERIENCE */
+#experience{background:var(--bg2);}
+.exp-wrap{display:grid;grid-template-columns:260px 1fr;gap:56px;}
+.exp-tabs{display:flex;flex-direction:column;gap:3px;position:sticky;top:90px;height:fit-content;}
+.exp-tab{padding:14px 18px;border-radius:3px;cursor:pointer;border-left:2px solid transparent;transition:all 0.2s;}
+.exp-tab.active,.exp-tab:hover{background:rgba(0,212,255,0.07);border-left-color:var(--cyan);}
+.et-role{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--white);}
+.et-co{font-size:11px;color:var(--gray);margin-top:2px;}
+.et-yr{font-size:10px;color:var(--cyan);margin-top:2px;font-family:'DM Mono',monospace;letter-spacing:1px;}
+.exp-panel{display:none;animation:fadeIn 0.3s ease;}
+.exp-panel.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateX(12px);}to{opacity:1;transform:translateX(0);}}
+.ep-role{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--white);margin-bottom:6px;}
+.ep-co{font-size:14px;font-weight:600;background:linear-gradient(90deg,var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.ep-meta{font-family:'DM Mono',monospace;font-size:11px;color:var(--gray);margin-top:4px;margin-bottom:24px;}
+.ep-bullets{list-style:none;display:flex;flex-direction:column;gap:13px;}
+.ep-bullets li{font-size:14px;color:rgba(238,242,247,0.68);line-height:1.8;padding-left:22px;position:relative;}
+.ep-bullets li::before{content:'▸';position:absolute;left:0;top:2px;color:var(--cyan);font-size:10px;}
+
+/* PROJECTS — modal-based */
+#projects{background:var(--bg);}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:18px;}
+.proj-card{background:var(--card);border:1px solid var(--border2);border-radius:6px;overflow:hidden;cursor:pointer;transition:all 0.3s;position:relative;}
+.proj-card::after{content:'';position:absolute;inset:0;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(0,212,255,0);transition:box-shadow 0.3s;pointer-events:none;}
+.proj-card:hover{transform:translateY(-5px);box-shadow:0 18px 50px rgba(0,0,0,0.5);}
+.proj-card:hover::after{box-shadow:inset 0 0 0 1px rgba(0,212,255,0.4);}
+.proj-head{padding:22px 26px;background:linear-gradient(135deg,var(--bg3),rgba(0,212,255,0.03));border-bottom:1px solid var(--border2);display:flex;justify-content:space-between;align-items:flex-start;}
+.proj-name{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;color:var(--white);}
+.proj-badge{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;background:var(--cyan);color:var(--bg);padding:4px 10px;border-radius:2px;white-space:nowrap;}
+.proj-body{padding:20px 26px;}
+.proj-period{font-family:'DM Mono',monospace;font-size:10px;color:var(--gray);margin-bottom:10px;letter-spacing:1px;}
+.proj-short{font-size:13px;color:var(--gray);line-height:1.7;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+.ptag{font-size:10px;font-weight:600;background:rgba(124,58,237,0.12);border:1px solid rgba(124,58,237,0.22);color:#a78bfa;padding:3px 9px;border-radius:2px;}
+.proj-footer{padding:14px 26px;border-top:1px solid var(--border2);display:flex;align-items:center;justify-content:space-between;}
+.proj-click{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);}
+.proj-arrow{font-size:16px;color:var(--cyan);transition:transform 0.2s;}
+.proj-card:hover .proj-arrow{transform:translateX(4px);}
+
+/* PROJECT MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(7,9,15,0.88);backdrop-filter:blur(16px);z-index:800;align-items:center;justify-content:center;padding:24px;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--bg3);border:1px solid rgba(0,212,255,0.18);border-radius:10px;width:100%;max-width:780px;max-height:90vh;overflow-y:auto;position:relative;animation:modalIn 0.35s cubic-bezier(0.34,1.56,0.64,1);}
+@keyframes modalIn{from{opacity:0;transform:scale(0.9) translateY(20px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.modal-top{background:linear-gradient(135deg,var(--bg2),rgba(0,212,255,0.05));padding:36px 40px 28px;border-bottom:1px solid var(--border2);position:relative;}
+.modal-close{position:absolute;top:20px;right:20px;width:36px;height:36px;background:rgba(255,255,255,0.06);border:1px solid var(--border2);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;color:var(--gray);transition:all 0.2s;}
+.modal-close:hover{background:rgba(0,212,255,0.1);color:var(--cyan);border-color:var(--cyan);}
+.modal-role-badge{display:inline-block;font-size:9px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;background:var(--cyan);color:var(--bg);padding:4px 12px;border-radius:2px;margin-bottom:14px;}
+.modal-title{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--white);margin-bottom:8px;}
+.modal-period{font-family:'DM Mono',monospace;font-size:11px;color:var(--gray);letter-spacing:1px;}
+.modal-body{padding:32px 40px;}
+.modal-section-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;margin-top:24px;}
+.modal-section-label:first-child{margin-top:0;}
+.modal-desc{font-size:14px;color:rgba(238,242,247,0.7);line-height:1.85;margin-bottom:12px;}
+.modal-bullets{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:16px;}
+.modal-bullets li{font-size:13.5px;color:rgba(238,242,247,0.65);line-height:1.75;padding-left:20px;position:relative;}
+.modal-bullets li::before{content:'▸';position:absolute;left:0;top:2px;color:var(--cyan);font-size:9px;}
+.modal-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.modal-tag{font-size:11px;font-weight:600;background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.18);color:var(--cyan);padding:5px 12px;border-radius:2px;}
+
+/* CERTS */
+#certifications{background:var(--bg2);}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;}
+.cert-card{background:var(--card);border:1px solid var(--border2);border-radius:5px;padding:22px;display:flex;gap:14px;align-items:flex-start;transition:all 0.25s;position:relative;overflow:hidden;}
+.cert-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--green));transition:width 0.4s;}
+.cert-card:hover{border-color:rgba(0,212,255,0.25);}
+.cert-card:hover::after{width:100%;}
+.cert-ico{font-size:26px;flex-shrink:0;}
+.cert-title{font-size:13.5px;font-weight:600;color:var(--white);line-height:1.5;}
+.cert-sub{font-size:11px;color:var(--gray);margin-top:3px;}
+
+/* CONTACT */
+#contact{background:var(--bg);position:relative;overflow:hidden;}
+#contact::before{content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:700px;height:350px;border-radius:50%;background:radial-gradient(ellipse,rgba(0,212,255,0.05) 0%,transparent 70%);pointer-events:none;}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;}
+.contact-cards{display:flex;flex-direction:column;gap:14px;}
+.c-card{background:var(--card);border:1px solid var(--border2);border-radius:5px;padding:18px 22px;display:flex;align-items:center;gap:18px;text-decoration:none;transition:all 0.25s;}
+.c-card:hover{border-color:rgba(0,212,255,0.3);transform:translateX(5px);}
+.c-ico{width:46px;height:46px;flex-shrink:0;background:rgba(0,212,255,0.07);border:1px solid rgba(0,212,255,0.18);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.c-lbl{font-size:10px;color:var(--gray);letter-spacing:2px;text-transform:uppercase;}
+.c-val{font-size:14px;font-weight:500;color:var(--white);margin-top:3px;}
+.c-val a{color:var(--cyan);text-decoration:none;}
+
+/* CONTACT FORM */
+.cf{display:flex;flex-direction:column;gap:0;}
+.cf-intro{font-size:14px;line-height:1.9;color:rgba(238,242,247,0.6);margin-bottom:28px;}
+.cf-intro strong{color:var(--cyan);}
+.cf-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+.fg.full{grid-column:1/-1;}
+.fg label{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray);}
+.fg input,.fg textarea,.fg select{background:var(--bg2);border:1px solid var(--border2);border-radius:3px;color:var(--white);padding:13px 16px;font-family:'Manrope',sans-serif;font-size:13.5px;outline:none;transition:border-color 0.2s;resize:none;width:100%;}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:rgba(0,212,255,0.4);}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--gray2);}
+.fg select option{background:var(--bg2);color:var(--white);}
+.cf-submit{width:100%;background:linear-gradient(90deg,var(--cyan),var(--green));color:var(--bg);border:none;padding:15px;font-family:'Syne',sans-serif;font-size:13px;font-weight:800;letter-spacing:2px;text-transform:uppercase;border-radius:3px;cursor:pointer;transition:all 0.3s;box-shadow:0 0 22px rgba(0,212,255,0.2);margin-top:4px;}
+.cf-submit:hover{box-shadow:0 0 44px rgba(0,212,255,0.4);transform:translateY(-2px);}
+.cf-note{font-size:11px;color:var(--gray);margin-top:10px;text-align:center;}
+.cf-success{display:none;text-align:center;padding:32px;background:rgba(13,255,140,0.07);border:1px solid rgba(13,255,140,0.2);border-radius:5px;}
+.cf-success-icon{font-size:40px;margin-bottom:12px;}
+.cf-success-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--green);margin-bottom:8px;}
+.cf-success-sub{font-size:13px;color:var(--gray);}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border2);padding:32px 80px;display:flex;justify-content:space-between;align-items:center;}
+.ft-logo{display:flex;align-items:center;gap:10px;}
+.ft-logo svg{width:36px;height:36px;}
+.ft-name{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;color:var(--white);}
+.ft-copy{font-size:11px;color:var(--gray);}
+.ft-links{display:flex;gap:24px;}
+.ft-links a{font-size:11px;color:var(--gray);text-decoration:none;letter-spacing:1px;transition:color 0.2s;}
+.ft-links a:hover{color:var(--cyan);}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(36px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.rv.in{opacity:1;transform:translateY(0);}
+.d1{transition-delay:0.1s;}.d2{transition-delay:0.2s;}.d3{transition-delay:0.3s;}.d4{transition-delay:0.4s;}
+
+@media(max-width:960px){
+  nav{padding:0 24px;}
+  .nav-links,.nav-cta{display:none;}
+  .hero{grid-template-columns:1fr;padding:100px 24px 60px;}
+  .hero-right{display:none;}
+  section{padding:64px 24px;}
+  .stats-bar{grid-template-columns:repeat(2,1fr);}
+  .exp-wrap,.contact-wrap{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:16px;text-align:center;padding:28px 24px;}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#home">
+    <!-- Professional SVG Logo -->
+    <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="lg1" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#00d4ff"/>
+          <stop offset="100%" stop-color="#0dff8c"/>
+        </linearGradient>
+        <linearGradient id="lg2" x1="44" y1="0" x2="0" y2="44" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#0dff8c" stop-opacity="0.3"/>
+        </linearGradient>
+      </defs>
+      <!-- Outer hexagon frame -->
+      <polygon points="22,2 40,12 40,32 22,42 4,32 4,12" stroke="url(#lg1)" stroke-width="1.5" fill="rgba(0,212,255,0.05)"/>
+      <!-- Inner accent line -->
+      <polygon points="22,7 36,15 36,29 22,37 8,29 8,15" stroke="url(#lg2)" stroke-width="0.8" fill="none"/>
+      <!-- J letterform -->
+      <path d="M19 14 L25 14 L25 26 C25 29.3 23 31 20.5 31 C18.2 31 16.5 29.8 16 28" stroke="url(#lg1)" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+      <!-- G letterform -->
+      <path d="M28 19 C26.5 17.2 24.5 16.5 22.5 16.5 C19.2 16.5 17 19 17 22 C17 25 19.2 27.5 22.5 27.5 C24.8 27.5 26.8 26.2 27.5 24.5 L27.5 22.5 L24 22.5" stroke="url(#lg1)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    <div>
+      <div class="nav-logo-text">Jay Gandhi</div>
+      <span class="nav-logo-sub">QA Lead · Automation Architect</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="grid-overlay"></div>
+  <div class="noise"></div>
+  <div class="hero-left">
+    <div class="hero-badge"><span class="badge-dot"></span>Available for Senior QA Roles</div>
+    <p class="hero-hey"><span>//</span> hello, I'm</p>
+    <h1>
+      <span class="line1">Jay</span>
+      <span class="line2">Gandhi</span>
+    </h1>
+    <p class="hero-sub">Senior QA Lead &nbsp;/&nbsp; Test Automation Architect &nbsp;/&nbsp; AI-Augmented Quality Engineering</p>
+    <p class="hero-p">
+      I build <strong>bulletproof automation frameworks</strong> with Cypress & Playwright using Vibe Testing methodology. I leverage <strong>Cursor, GitHub Copilot & Claude Code</strong> to 10x test development velocity. <strong>8+ years</strong> — zero critical production escapes.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-main">View My Work</a>
+      <a href="#contact" class="btn-sec">Let's Talk</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="photo-wrap">
+      <div class="photo-halo"></div>
+      <div class="photo-frame">
+        <img src="data:image/jpeg;base64,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" alt="Jay Gandhi — Senior QA Lead" />
+      </div>
+      <div class="photo-yr"><div class="n">8+</div><div class="l">Years</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar" id="about">
+  <div class="st rv"><div class="st-n">15+</div><div class="st-l">Projects Delivered</div></div>
+  <div class="st rv d1"><div class="st-n">300+</div><div class="st-l">AI-Generated Scripts</div></div>
+  <div class="st rv d2"><div class="st-n">85%</div><div class="st-l">Avg Test Coverage</div></div>
+  <div class="st rv d3"><div class="st-n">0</div><div class="st-l">Critical Prod Escapes</div></div>
+</div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="s-eye rv">Core Competencies</p>
+  <h2 class="s-ttl rv">My Technical <em>Arsenal</em></h2>
+  <div class="skills-grid">
+    <div class="sk rv"><div class="sk-cat">AI Coding Assistants</div><div class="sk-name">AI-Powered Dev</div><div class="sk-desc">Using Cursor, GitHub Copilot & Claude Code for intelligent test script generation, framework scaffolding & code review — cutting build time by 40%.</div><div class="sk-chips"><span class="chip">Cursor</span><span class="chip">GitHub Copilot</span><span class="chip">Claude Code</span></div></div>
+    <div class="sk rv d1"><div class="sk-cat">Automation Frameworks</div><div class="sk-name">Framework Engineering</div><div class="sk-desc">Architect Cypress & Playwright E2E frameworks from scratch using Vibe Testing methodology with POM patterns. Also Selenium & Appium.</div><div class="sk-chips"><span class="chip">Cypress</span><span class="chip">Playwright</span><span class="chip">Selenium</span><span class="chip">Appium</span></div></div>
+    <div class="sk rv d2"><div class="sk-cat">Methodology</div><div class="sk-name">Vibe Testing</div><div class="sk-desc">Applying Vibe Testing principles to align automation with real user behavior flows — tests that reflect genuine product usage patterns.</div><div class="sk-chips"><span class="chip">Vibe Testing</span><span class="chip">POM</span><span class="chip">BDD</span></div></div>
+    <div class="sk rv"><div class="sk-cat">AI QA Tools</div><div class="sk-name">AI-Driven Testing</div><div class="sk-desc">ChatGPT-4, TestCraft, Testsigma, Qase.io, AI Test Case Generator, Test.io, Mocarro — 3x faster test authoring, integrated into sprints.</div><div class="sk-chips"><span class="chip">ChatGPT-4</span><span class="chip">Testsigma</span><span class="chip">Qase.io</span><span class="chip">Test.io</span></div></div>
+    <div class="sk rv d1"><div class="sk-cat">API Testing</div><div class="sk-name">Integration Validation</div><div class="sk-desc">Deep API testing via Postman & Swagger. CRM integrations — Salesforce, HubSpot & Five9. Built reusable libraries for rapid onboarding.</div><div class="sk-chips"><span class="chip">Postman</span><span class="chip">Swagger</span><span class="chip">Salesforce</span><span class="chip">HubSpot</span></div></div>
+    <div class="sk rv d2"><div class="sk-cat">Test Management</div><div class="sk-name">Defect & Process Control</div><div class="sk-desc">End-to-end defect lifecycle via Jira, Bugzilla, Redmine & TestLink. Full SDLC/STLC ownership in Agile/Scrum environments.</div><div class="sk-chips"><span class="chip">Jira</span><span class="chip">TestLink</span><span class="chip">Agile</span><span class="chip">Scrum</span></div></div>
+    <div class="sk rv"><div class="sk-cat">Testing Types</div><div class="sk-name">Full-Spectrum Coverage</div><div class="sk-desc">Manual, Automated, Regression, Performance, API, Mobile (iOS & Android), E2E, UAT, Exploratory — every layer covered.</div><div class="sk-chips"><span class="chip">E2E</span><span class="chip">Mobile</span><span class="chip">UAT</span><span class="chip">Regression</span></div></div>
+    <div class="sk rv d1"><div class="sk-cat">Leadership</div><div class="sk-name">QA Team Management</div><div class="sk-desc">Building, mentoring & scaling QA teams. Establishing automation benchmarks, KPI dashboards & release readiness quality gates.</div><div class="sk-chips"><span class="chip">Team Lead</span><span class="chip">Mentoring</span><span class="chip">Strategy</span></div></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="s-eye rv">Career Timeline</p>
+  <h2 class="s-ttl rv">Where I've <em>Made Impact</em></h2>
+  <div class="exp-wrap">
+    <div class="exp-tabs rv">
+      <div class="exp-tab active" data-p="ep1"><div class="et-role">Senior QA Lead</div><div class="et-co">OpenXcell AI Development</div><div class="et-yr">Mar 2025 – Present</div></div>
+      <div class="exp-tab" data-p="ep2"><div class="et-role">Senior QA Analyst</div><div class="et-co">Impero IT Services</div><div class="et-yr">Jul 2023 – Feb 2025</div></div>
+      <div class="exp-tab" data-p="ep3"><div class="et-role">QA → Sr. QA Analyst</div><div class="et-co">Silicon IT Hub Pvt. Ltd.</div><div class="et-yr">May 2018 – Jun 2023</div></div>
+      <div class="exp-tab" data-p="ep4"><div class="et-role">Apprentice Technician</div><div class="et-co">Midco Limited</div><div class="et-yr">Nov 2016 – Nov 2017</div></div>
+    </div>
+    <div class="rv d2">
+      <div class="exp-panel active" id="ep1">
+        <div class="ep-role">Senior QA Lead</div>
+        <div class="ep-co">OpenXcell AI Development Company</div>
+        <div class="ep-meta">Mar 2025 – Present &nbsp;·&nbsp; Ahmedabad, Gujarat</div>
+        <ul class="ep-bullets">
+          <li>Architected Cypress & Playwright automation frameworks from scratch using Vibe Testing methodology — regression time cut from 3 days to under 4 hours</li>
+          <li>Leveraged Cursor, GitHub Copilot & Claude Code to auto-generate 300+ test scripts, accelerating framework delivery by 40%</li>
+          <li>Integrated AI QA tools (ChatGPT-4, Testsigma, Qase.io, Test.io, Mocarro) into sprint workflows, achieving 3x faster test case authoring</li>
+          <li>Maintained zero critical-defect escapes across ERP, e-commerce, insurance, banking & mobile applications</li>
+          <li>Mentored QA engineers on AI-assisted testing, automation best practices & framework design patterns</li>
+          <li>Collaborated from sprint planning through release, embedding quality gates at every stage of delivery</li>
+        </ul>
+      </div>
+      <div class="exp-panel" id="ep2">
+        <div class="ep-role">Senior Quality Analyst</div>
+        <div class="ep-co">Impero IT Services Pvt. Ltd.</div>
+        <div class="ep-meta">Jul 2023 – Feb 2025 &nbsp;·&nbsp; Ahmedabad, Gujarat</div>
+        <ul class="ep-bullets">
+          <li>Managed & mentored a team of QA Analysts, establishing standards for test case design, automation coverage & defect reporting</li>
+          <li>Designed Playwright-based regression suites, reducing manual effort by 50%+</li>
+          <li>Partnered with Engineering, Product & Operations to set quality goals, acceptance criteria & release readiness benchmarks</li>
+          <li>Standardized QA documentation, KPI dashboards & sprint reporting, increasing stakeholder visibility & team velocity</li>
+          <li>Conducted functional, regression, API & exploratory testing across multiple product lines within Agile cycles</li>
+        </ul>
+      </div>
+      <div class="exp-panel" id="ep3">
+        <div class="ep-role">Quality Analyst → Senior QA Analyst</div>
+        <div class="ep-co">Silicon IT Hub Pvt. Ltd.</div>
+        <div class="ep-meta">May 2018 – Jun 2023 &nbsp;·&nbsp; Ahmedabad, Gujarat</div>
+        <ul class="ep-bullets">
+          <li>Progressed from QA Analyst to Senior QA owning test planning, automation scripting & defect management across 5+ concurrent projects</li>
+          <li>Built Selenium automation frameworks for fintech & insurance platforms integrated with CI pipelines</li>
+          <li>Conducted thorough API testing via Postman & Swagger, validating data integrity & third-party integrations</li>
+          <li>Delivered consistent quality across multiple Agile teams, meeting all release deadlines without quality compromise</li>
+        </ul>
+      </div>
+      <div class="exp-panel" id="ep4">
+        <div class="ep-role">Apprentice Technician</div>
+        <div class="ep-co">Midco Limited</div>
+        <div class="ep-meta">Nov 2016 – Nov 2017 &nbsp;·&nbsp; Ahmedabad, Gujarat</div>
+        <ul class="ep-bullets">
+          <li>Completed a structured apprenticeship, building foundational knowledge of industry standards & quality processes</li>
+          <li>Developed cross-team collaboration skills and hands-on understanding of production-grade engineering standards</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="s-eye rv">Project Portfolio</p>
+  <h2 class="s-ttl rv">High-Stakes Work <em>Across Industries</em></h2>
+  <div class="proj-grid">
+
+    <div class="proj-card rv" onclick="openModal('m1')">
+      <div class="proj-head"><div class="proj-name">Meera AI</div><div class="proj-badge">QA Lead</div></div>
+      <div class="proj-body">
+        <div class="proj-period">Mar 2025 – Present</div>
+        <p class="proj-short">AI-powered conversational bot platform for text & voice. Configured by industry, skills & use cases with auto-calling and multilingual messaging.</p>
+        <div class="proj-tags"><span class="ptag">Cypress</span><span class="ptag">Claude Code</span><span class="ptag">Vibe Testing</span><span class="ptag">AI Bots</span></div>
+      </div>
+      <div class="proj-footer"><span class="proj-click">View Details</span><span class="proj-arrow">→</span></div>
+    </div>
+
+    <div class="proj-card rv d1" onclick="openModal('m2')">
+      <div class="proj-head"><div class="proj-name">REX Construction</div><div class="proj-badge">Sr. QA</div></div>
+      <div class="proj-body">
+        <div class="proj-period">Mar 2025 – Present</div>
+        <p class="proj-short">Full-scale construction platform — CMS, web & mobile. Built Cypress framework cutting regression from 3 days to 4 hours.</p>
+        <div class="proj-tags"><span class="ptag">Cypress</span><span class="ptag">Cursor AI</span><span class="ptag">Mobile</span><span class="ptag">CMS</span></div>
+      </div>
+      <div class="proj-footer"><span class="proj-click">View Details</span><span class="proj-arrow">→</span></div>
+    </div>
+
+    <div class="proj-card rv d2" onclick="openModal('m3')">
+      <div class="proj-head"><div class="proj-name">U-LEARN</div><div class="proj-badge">Sr. QA</div></div>
+      <div class="proj-body">
+        <div class="proj-period">Aug 2023 – Feb 2025</div>
+        <p class="proj-short">Digital education platform for schools, teachers & parents. Playwright POM achieving 85%+ automated test coverage.</p>
+        <div class="proj-tags"><span class="ptag">Playwright</span><span class="ptag">POM</span><span class="ptag">API Testing</span><span class="ptag">EdTech</span></div>
+      </div>
+      <div class="proj-footer"><span class="proj-click">View Details</span><span class="proj-arrow">→</span></div>
+    </div>
+
+    <div class="proj-card rv" onclick="openModal('m4')">
+      <div class="proj-head"><div class="proj-name">U-MART</div><div class="proj-badge">Sr. QA</div></div>
+      <div class="proj-body">
+        <div class="proj-period">Aug 2023 – Feb 2025</div>
+        <p class="proj-short">Multi-role marketplace — customers, delivery agents & admins. E2E testing across mobile & web with full API validation.</p>
+        <div class="proj-tags"><span class="ptag">Selenium</span><span class="ptag">Mobile E2E</span><span class="ptag">Postman</span></div>
+      </div>
+      <div class="proj-footer"><span class="proj-click">View Details</span><span class="proj-arrow">→</span></div>
+    </div>
+
+    <div class="proj-card rv d1" onclick="openModal('m5')">
+      <div class="proj-head"><div class="proj-name">Pension Vault</div><div class="proj-badge">Sr. QA</div></div>
+      <div class="proj-body">
+        <div class="proj-period">Jan 2023 – Present</div>
+        <p class="proj-short">Multi-role pension management platform. Structured test plans & API validation for secure financial operations & compliance.</p>
+        <div class="proj-tags"><span class="ptag">Fintech</span><span class="ptag">Swagger</span><span class="ptag">Security Testing</span></div>
+      </div>
+      <div class="proj-footer"><span class="proj-click">View Details</span><span class="proj-arrow">→</span></div>
+    </div>
+
+    <div class="proj-card rv d2" onclick="openModal('m6')">
+      <div class="proj-head"><div class="proj-name">CREDEBT</div><div class="proj-badge">Sr. QA Analyst</div></div>
+      <div class="proj-body">
+        <div class="proj-period">Feb 2020 – May 2023</div>
+        <p class="proj-short">Trade finance & credit fintech platform. Full-cycle QA — Selenium automation, Swagger & Postman API testing, UAT across all modules.</p>
+        <div class="proj-tags"><span class="ptag">Selenium</span><span class="ptag">Swagger</span><span class="ptag">Trade Finance</span></div>
+      </div>
+      <div class="proj-footer"><span class="proj-click">View Details</span><span class="proj-arrow">→</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECT MODALS -->
+<div class="modal-overlay" id="m1" onclick="closeOnBg(event,'m1')">
+  <div class="modal">
+    <div class="modal-top">
+      <button class="modal-close" onclick="closeModal('m1')">✕</button>
+      <div class="modal-role-badge">QA Lead</div>
+      <div class="modal-title">Meera AI</div>
+      <div class="modal-period">Mar 2025 – Present &nbsp;·&nbsp; OpenXcell AI Development</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section-label">Project Overview</div>
+      <p class="modal-desc">Meera is an AI-powered conversational platform that creates intelligent bots for text messaging and voice calls. Bots are fully configurable based on Industry, Sub-Industry, Skills, and Use Cases — serving verticals like Insurance, Higher Education, Financial Services, Healthcare, and Home Services.</p>
+      <p class="modal-desc">The platform also features automated outbound calling with intelligent follow-ups, callback scheduling, and warm call transfers to human agents — all driven by user inputs and conversation outcomes.</p>
+      <div class="modal-section-label">My Contributions</div>
+      <ul class="modal-bullets">
+        <li>Led full QA strategy for the platform — from test planning and case authoring to framework build and release signoff</li>
+        <li>Designed and built a Cypress E2E automation framework using Vibe Testing methodology to simulate real-world multi-turn conversation flows</li>
+        <li>Leveraged Claude Code and GitHub Copilot to accelerate test script generation for complex auto-calling and follow-up scenarios</li>
+        <li>Validated bot configuration workflows across industry verticals — Insurance, Fintech, Healthcare, EdTech & Home Services</li>
+        <li>Conducted comprehensive API testing for bot orchestration, call routing, and CRM integrations (Salesforce, HubSpot, Five9) via Postman & Swagger</li>
+        <li>Verified multilingual messaging across 90+ languages and validated TCPA-compliant workflows for regulatory adherence</li>
+        <li>Collaborated with AI and product teams to define edge cases for conversational AI responses and flow integrity</li>
+      </ul>
+      <div class="modal-section-label">Tech Stack</div>
+      <div class="modal-tags"><span class="modal-tag">Cypress</span><span class="modal-tag">Vibe Testing</span><span class="modal-tag">Claude Code</span><span class="modal-tag">GitHub Copilot</span><span class="modal-tag">Postman</span><span class="modal-tag">Swagger</span><span class="modal-tag">Salesforce API</span><span class="modal-tag">HubSpot</span><span class="modal-tag">Five9</span><span class="modal-tag">Qase.io</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m2" onclick="closeOnBg(event,'m2')">
+  <div class="modal">
+    <div class="modal-top">
+      <button class="modal-close" onclick="closeModal('m2')">✕</button>
+      <div class="modal-role-badge">Sr. QA</div>
+      <div class="modal-title">REX Construction</div>
+      <div class="modal-period">Mar 2025 – Present &nbsp;·&nbsp; OpenXcell AI Development</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section-label">Project Overview</div>
+      <p class="modal-desc">REX is a full-scale digital platform purpose-built for the construction industry, integrating a CMS, responsive web application, and native mobile apps (iOS & Android). It supports both enterprise clients and individual contractors with features including AI-assisted support, document management, project analytics, training modules, and subscription billing.</p>
+      <div class="modal-section-label">My Contributions</div>
+      <ul class="modal-bullets">
+        <li>Architected and built the entire Cypress automation framework from scratch using Vibe Testing methodology — reducing regression cycle time from 3 days to under 4 hours</li>
+        <li>Used Cursor AI editor for intelligent test script refactoring and maintenance as platform features evolved rapidly</li>
+        <li>Led QA across CMS, web, iOS & Android applications — covering AI-assisted support, document workflows, analytics dashboards & subscriptions</li>
+        <li>Created comprehensive test plans covering functional, regression, performance & API testing to ensure data integrity across user roles</li>
+        <li>Collaborated closely with product & engineering teams to define acceptance criteria from early sprint planning</li>
+      </ul>
+      <div class="modal-section-label">Tech Stack</div>
+      <div class="modal-tags"><span class="modal-tag">Cypress</span><span class="modal-tag">Cursor AI</span><span class="modal-tag">Vibe Testing</span><span class="modal-tag">Appium</span><span class="modal-tag">Postman</span><span class="modal-tag">Jira</span><span class="modal-tag">iOS Testing</span><span class="modal-tag">Android Testing</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m3" onclick="closeOnBg(event,'m3')">
+  <div class="modal">
+    <div class="modal-top">
+      <button class="modal-close" onclick="closeModal('m3')">✕</button>
+      <div class="modal-role-badge">Sr. QA</div>
+      <div class="modal-title">U-LEARN</div>
+      <div class="modal-period">Aug 2023 – Feb 2025 &nbsp;·&nbsp; Impero IT Services</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section-label">Project Overview</div>
+      <p class="modal-desc">U-LEARN is a comprehensive digital education platform connecting schools, teachers, students, and parents from early childhood through graduation. The platform delivers learning content, progress tracking, communication tools, and administrative workflows across web and mobile applications.</p>
+      <div class="modal-section-label">My Contributions</div>
+      <ul class="modal-bullets">
+        <li>Developed a Playwright automation framework with Page Object Model (POM) design, achieving 85%+ automated test coverage across web & API layers</li>
+        <li>Authored test cases directly from user stories, ensuring complete requirements traceability and acceptance criteria validation</li>
+        <li>Performed comprehensive API testing to verify data flows between schools, teacher portals, student dashboards, and parent views</li>
+        <li>Conducted regression, functional & exploratory testing across web and mobile (iOS & Android) with every sprint release</li>
+        <li>Managed defect lifecycle in Jira, providing detailed bug reports and collaborating with dev teams for rapid resolution</li>
+      </ul>
+      <div class="modal-section-label">Tech Stack</div>
+      <div class="modal-tags"><span class="modal-tag">Playwright</span><span class="modal-tag">POM Design</span><span class="modal-tag">Postman</span><span class="modal-tag">Swagger</span><span class="modal-tag">Jira</span><span class="modal-tag">Appium</span><span class="modal-tag">Agile/Scrum</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m4" onclick="closeOnBg(event,'m4')">
+  <div class="modal">
+    <div class="modal-top">
+      <button class="modal-close" onclick="closeModal('m4')">✕</button>
+      <div class="modal-role-badge">Sr. QA</div>
+      <div class="modal-title">U-MART</div>
+      <div class="modal-period">Aug 2023 – Feb 2025 &nbsp;·&nbsp; Impero IT Services</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section-label">Project Overview</div>
+      <p class="modal-desc">U-MART is a multi-role marketplace platform serving three distinct user personas: end customers, delivery agents, and platform administrators. The system handles the full e-commerce lifecycle — product browsing, ordering, real-time delivery tracking, and admin management — across both mobile apps and web interfaces.</p>
+      <div class="modal-section-label">My Contributions</div>
+      <ul class="modal-bullets">
+        <li>Directed end-to-end QA across all three user roles — customer, delivery agent & admin — on mobile (iOS/Android) and web</li>
+        <li>Built Selenium-based automation suite targeting critical purchase and delivery flows, reducing manual regression effort significantly</li>
+        <li>Conducted API validation using Postman for order management, delivery tracking, and inventory synchronization endpoints</li>
+        <li>Authored detailed test cases ensuring cross-platform consistency and performance reliability under load conditions</li>
+        <li>Managed all defects through Jira, maintaining a clear audit trail and sprint-by-sprint quality metrics</li>
+      </ul>
+      <div class="modal-section-label">Tech Stack</div>
+      <div class="modal-tags"><span class="modal-tag">Selenium</span><span class="modal-tag">Appium</span><span class="modal-tag">Postman</span><span class="modal-tag">Jira</span><span class="modal-tag">Mobile Testing</span><span class="modal-tag">E2E Testing</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m5" onclick="closeOnBg(event,'m5')">
+  <div class="modal">
+    <div class="modal-top">
+      <button class="modal-close" onclick="closeModal('m5')">✕</button>
+      <div class="modal-role-badge">Sr. QA</div>
+      <div class="modal-title">Pension Vault</div>
+      <div class="modal-period">Jan 2023 – Present &nbsp;·&nbsp; Silicon IT Hub / OpenXcell</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section-label">Project Overview</div>
+      <p class="modal-desc">Pension Vault is a secure financial platform for pension management with four distinct user roles — employees, employers, pension administrators, and auditors. The platform handles pension contributions, fund tracking, reporting, and compliance across regulatory frameworks.</p>
+      <div class="modal-section-label">My Contributions</div>
+      <ul class="modal-bullets">
+        <li>Managed QA for all four user roles, designing role-specific test plans and ensuring data isolation between user types</li>
+        <li>Implemented structured test plans covering functional, security, regression & UAT testing for all financial transaction flows</li>
+        <li>Validated APIs using Swagger and Postman for pension calculation engines, contribution tracking & report generation</li>
+        <li>Ensured zero-defect financial computation accuracy — critical for regulatory and audit compliance</li>
+        <li>Coordinated release readiness gates and final sign-off with product & compliance stakeholders</li>
+      </ul>
+      <div class="modal-section-label">Tech Stack</div>
+      <div class="modal-tags"><span class="modal-tag">Postman</span><span class="modal-tag">Swagger</span><span class="modal-tag">TestLink</span><span class="modal-tag">Jira</span><span class="modal-tag">Security Testing</span><span class="modal-tag">UAT</span><span class="modal-tag">Regression</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="m6" onclick="closeOnBg(event,'m6')">
+  <div class="modal">
+    <div class="modal-top">
+      <button class="modal-close" onclick="closeModal('m6')">✕</button>
+      <div class="modal-role-badge">Sr. QA Analyst</div>
+      <div class="modal-title">CREDEBT</div>
+      <div class="modal-period">Feb 2020 – May 2023 &nbsp;·&nbsp; Silicon IT Hub Pvt. Ltd.</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section-label">Project Overview</div>
+      <p class="modal-desc">CREDEBT is a fintech platform offering businesses access to trade finance and credit alternatives — providing liquidity solutions outside traditional banking. The platform manages the full credit application, approval, funding, and repayment lifecycle.</p>
+      <div class="modal-section-label">My Contributions</div>
+      <ul class="modal-bullets">
+        <li>Delivered full-cycle QA from test planning through production signoff — owning test case design, execution & defect management</li>
+        <li>Built Selenium automation framework targeting critical credit application, approval & repayment user journeys</li>
+        <li>Conducted thorough API testing via Swagger and Postman, validating financial calculation accuracy and third-party integrations</li>
+        <li>Performed regression, functional & UAT testing across all platform modules with every major release</li>
+        <li>Maintained a stable, scalable product through multiple feature releases supporting growing business volumes</li>
+      </ul>
+      <div class="modal-section-label">Tech Stack</div>
+      <div class="modal-tags"><span class="modal-tag">Selenium</span><span class="modal-tag">Postman</span><span class="modal-tag">Swagger</span><span class="modal-tag">Jira</span><span class="modal-tag">Bugzilla</span><span class="modal-tag">Regression Testing</span><span class="modal-tag">UAT</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <p class="s-eye rv">Credentials</p>
+  <h2 class="s-ttl rv">Certifications <em>& Education</em></h2>
+  <div class="cert-grid">
+    <div class="cert-card rv"><div class="cert-ico">🏆</div><div><div class="cert-title">NSDC Advanced Selenium Certificate</div><div class="cert-sub">National Skill Development Corporation</div></div></div>
+    <div class="cert-card rv d1"><div class="cert-ico">🎯</div><div><div class="cert-title">Selectors Hub Certification Program</div><div class="cert-sub">Advanced Element Selection Strategies</div></div></div>
+    <div class="cert-card rv d2"><div class="cert-ico">📋</div><div><div class="cert-title">Test Case Studio Certification</div><div class="cert-sub">Test Design & Management</div></div></div>
+    <div class="cert-card rv d3"><div class="cert-ico">📊</div><div><div class="cert-title">Project Management Assessment</div><div class="cert-sub">PM Best Practices & Methodology</div></div></div>
+    <div class="cert-card rv"><div class="cert-ico">🎓</div><div><div class="cert-title">B.E. Electronics & Communication</div><div class="cert-sub">Hasmukh Goswami College of Engineering · 2016</div></div></div>
+    <div class="cert-card rv d1"><div class="cert-ico">📐</div><div><div class="cert-title">Diploma — Electronics & Communication</div><div class="cert-sub">F.D. Institute of Engineering · 2016</div></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="s-eye rv">Get In Touch</p>
+  <h2 class="s-ttl rv">Let's Build <em>Something Great</em></h2>
+  <div class="contact-wrap">
+    <div>
+      <div class="contact-cards">
+        <a class="c-card rv" href="mailto:jaygandhi147@gmail.com"><div class="c-ico">📧</div><div><div class="c-lbl">Email</div><div class="c-val">jaygandhi147@gmail.com</div></div></a>
+        <a class="c-card rv d1" href="tel:+918733918538"><div class="c-ico">📱</div><div><div class="c-lbl">Phone</div><div class="c-val">+91 87339 18538</div></div></a>
+        <div class="c-card rv d2"><div class="c-ico">📍</div><div><div class="c-lbl">Location</div><div class="c-val">Ahmedabad, Gujarat, India</div></div></div>
+
+      </div>
+    </div>
+    <div class="cf rv d1">
+      <p class="cf-intro">Open to <strong>Senior QA Lead</strong>, <strong>Automation Architect</strong>, and <strong>QA Consulting</strong> roles. Fill out the form and I'll get back within 24 hours.</p>
+      <div id="cf-form">
+        <div class="cf-grid">
+          <div class="fg"><label>First Name</label><input type="text" id="ff-fn" placeholder="John" /></div>
+          <div class="fg"><label>Last Name</label><input type="text" id="ff-ln" placeholder="Doe" /></div>
+          <div class="fg full"><label>Email Address</label><input type="email" id="ff-em" placeholder="john@company.com" /></div>
+          <div class="fg full"><label>Subject</label>
+            <select id="ff-sub">
+              <option value="">Select a topic...</option>
+              <option>Full-time Senior QA Role</option>
+              <option>Freelance / Contract QA</option>
+              <option>Automation Consulting</option>
+              <option>Framework Review</option>
+              <option>General Enquiry</option>
+            </select>
+          </div>
+          <div class="fg full"><label>Message</label><textarea rows="5" id="ff-msg" placeholder="Tell me about the opportunity or project..."></textarea></div>
+        </div>
+        <button class="cf-submit" onclick="sendMail()">Send Message →</button>
+        <p class="cf-note">Your message will be sent directly to jaygandhi147@gmail.com</p>
+      </div>
+      <div class="cf-success" id="cf-ok">
+        <div class="cf-success-icon">✅</div>
+        <div class="cf-success-title">Message Sent!</div>
+        <div class="cf-success-sub">Thanks for reaching out. Jay will respond within 24 hours.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-logo">
+    <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="flg" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#0dff8c"/>
+        </linearGradient>
+      </defs>
+      <polygon points="18,2 33,10.5 33,25.5 18,34 3,25.5 3,10.5" stroke="url(#flg)" stroke-width="1.5" fill="rgba(0,212,255,0.05)"/>
+      <path d="M15 11 L21 11 L21 21.5 C21 24 19.2 25.5 17 25.5 C15 25.5 13.5 24.5 13 23" stroke="url(#flg)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    </svg>
+    <div class="ft-name">Jay Gandhi</div>
+  </div>
+  <div class="ft-copy">© 2025 Jay Gandhi · Senior QA Lead · Ahmedabad, India</div>
+  <div class="ft-links">
+    <a href="#home">Top ↑</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="mailto:jaygandhi147@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script>
+// Custom cursor
+const cur = document.getElementById('cur'), curR = document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e=>{mx=e.clientX;my=e.clientY;cur.style.left=(mx-5)+'px';cur.style.top=(my-5)+'px';});
+function animR(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;curR.style.left=(rx-16)+'px';curR.style.top=(ry-16)+'px';requestAnimationFrame(animR);}
+animR();
+document.querySelectorAll('a,button,.proj-card,.exp-tab,.sk,.cert-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='scale(2.5)';cur.style.background='var(--green)';});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='scale(1)';cur.style.background='var(--cyan)';});
+});
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:0.08});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+// Experience tabs
+document.querySelectorAll('.exp-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.exp-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.exp-panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.p).classList.add('active');
+  });
+});
+
+// Project modals
+function openModal(id){
+  document.getElementById(id).classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(id){
+  document.getElementById(id).classList.remove('open');
+  document.body.style.overflow='';
+}
+function closeOnBg(e,id){if(e.target===document.getElementById(id))closeModal(id);}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-overlay.open').forEach(m=>m.classList.remove('open'));});
+
+// Contact form → mailto to jaygandhi147@gmail.com
+function sendMail(){
+  const fn=document.getElementById('ff-fn').value.trim();
+  const ln=document.getElementById('ff-ln').value.trim();
+  const em=document.getElementById('ff-em').value.trim();
+  const sub=document.getElementById('ff-sub').value;
+  const msg=document.getElementById('ff-msg').value.trim();
+  if(!fn||!em||!msg){alert('Please fill in your name, email and message.');return;}
+  const subject=encodeURIComponent((sub||'Portfolio Enquiry')+' — from '+fn+' '+ln);
+  const body=encodeURIComponent('Hi Jay,\n\n'+msg+'\n\n---\nFrom: '+fn+' '+ln+'\nEmail: '+em+'\nSubject: '+(sub||'General Enquiry'));
+  window.location.href='mailto:jaygandhi147@gmail.com?subject='+subject+'&body='+body;
+  document.getElementById('cf-form').style.display='none';
+  document.getElementById('cf-ok').style.display='block';
+}
+</script>
+</body>
+</html>
